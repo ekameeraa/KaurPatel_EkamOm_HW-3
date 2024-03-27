@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VUE AND AJAX ASSIGNMENT (API MASHUP)</title>
-</head>
-<body>
-    
-</body>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato%7CRaleway"
+      rel="stylesheet"
+    />
+    <link href="css/grid.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+
+    <!-- <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <script type="module" src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@v21.6.1/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div v-if="loading" class="loading-indicator">Loading...</div>
+      <ul>
+        <li
+          v-for="entry in entries"
+          :key="entry.id"
+          @click="showDetails(entry)"
+        >
+          {{ entry.title }}
+        </li>
+      </ul>
+      <div v-if="selectedEntry">
+        <h2>{{ selectedEntry.title }}</h2>
+        <p>{{ selectedEntry.description }}</p>
+      </div>
+      <div v-if="error" class="error-message">{{ error }}</div>
+    </div>
+  </body>
 </html>
