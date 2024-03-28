@@ -3,7 +3,7 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
-  background-color: #7e7e7e;
+  background-color: #fffced;
 
   .col-span-full {
     grid-column: span 2;
@@ -24,7 +24,7 @@
       padding: 0;
 
       li {
-        background-color: #fff;
+        background-color:  #fffced;
         padding: 15px;
         margin-bottom: 10px;
         box-shadow: 0 2px 4px #070606;
@@ -57,7 +57,7 @@
   }
 
   #songInfoCon {
-    background-color: #7e7e7e;
+    background-color: ababab;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
