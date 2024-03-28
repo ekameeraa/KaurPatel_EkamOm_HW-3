@@ -1,0 +1,77 @@
+.grid-con {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: #7e7e7e;
+
+  .col-span-full {
+    grid-column: span 2;
+
+    h1 {
+      color: #7b0303;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #070606;
+      margin-bottom: 5px;
+    }
+
+    #song-list {
+      list-style: none;
+      padding: 0;
+
+      li {
+        background-color: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px #070606;
+
+        h2,
+        h3 {
+          margin: 5px 0;
+        }
+
+        h2 {
+          font-size: 20px;
+          color: #5e008a;
+
+          a {
+            text-decoration: none;
+            color: inherit;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        h3 {
+          font-size: 18px;
+          color: #7b0303;
+        }
+      }
+    }
+  }
+
+  #songInfoCon {
+    background-color: #7e7e7e;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    div {
+      margin-bottom: 10px;
+
+      p {
+        font-size: 16px;
+        color: 070606;
+      }
+    }
+
+    .error {
+      color: #5e008a;
+    }
+  }
+}
