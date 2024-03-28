@@ -16,22 +16,29 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@v21.6.1/dist/vue.js"></script>
   </head>
   <body>
-    <div id="app">
-      <div v-if="loading" class="loading-indicator">Loading...</div>
-      <ul>
-        <li
-          v-for="entry in entries"
-          :key="entry.id"
-          @click="showDetails(entry)"
-        >
-          {{ entry.title }}
-        </li>
-      </ul>
-      <div v-if="selectedEntry">
-        <h2>{{ selectedEntry.title }}</h2>
-        <p>{{ selectedEntry.description }}</p>
+    <div class="grid-con" id="app">
+      <div class="col-span-full">
+        <h2>My Favourite Singer</h2>
+        <p>Sidhu</p>
+        <p>Check Now!</p>
+        <ul id="song-list">
+          <li v-for="song in songData">
+            <!-- thumbnail to be added by students, v-bind -->
+            <h3>
+              Title:
+              <a href="#song" @click="getSong(song.title)"> {{song.title}}</a>
+            </h3>
+            <h4>Duration: {{song.Duration_time}}</h4>
+          </li>
+        </ul>
       </div>
-      <div v-if="error" class="error-message">{{ error }}</div>
+      <div class="col-span-full" id="songInfoCon">
+        <div v-if="error">{{error}}</div>
+        <div v-if="album" id="book">
+          <p>Album: {{albumTitle}}</p>
+          <p>Rating: {{ratingsAverage}}</p>
+        </div>
+      </div>
     </div>
   </body>
 </html>
