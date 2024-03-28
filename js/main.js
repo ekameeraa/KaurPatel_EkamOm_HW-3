@@ -1,94 +1,45 @@
-import Vue from "vue";
-
-new Vue({
-  el: "#app",
-  data: {
-    songData: [],
-    error: "",
-    album: null,
-    albumTitle: "",
-    ratingsAverage: 0,
+const bookStore = Vue.createApp({
+  created() {
+    fetch("http://localhost/Kaur_Ekam_Api/public/songs")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        this.songData = data;
+      })
+      .catch((error) => {
+        console.error(error);
+        this.error = "Failed to fetch songs.";
+      });
   },
-  mounted() {
-    this.fetchSongs();
-  },
-  methods: {
-    fetchSongs() {
-      fetch("http://localhost/Kaur_Ekam_Api/public/song")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to fetch songs");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          this.songData = data;
-        })
-        .catch((error) => {
-          this.error = "Failed to fetch songs";
-          console.error("Error fetching songs:", error);
-        });
-    },
-    getSong(title) {
-      fetch(`http://localhost/Kaur_Ekam_Api/public/song/${title}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to fetch song details");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          this.album = data.album;
-          this.albumTitle = data.albumTitle;
-          this.ratingsAverage = data.ratingsAverage;
-        })
-        .catch((error) => {
-          this.error = "Failed to fetch song details";
-          console.error("Error fetching song details:", error);
-        });
-    },
-  },
-});
-
-import { createApp } from "vue";
-
-const app = createApp({
   data() {
     return {
       songData: [],
-      albumTitle: "",
-      ratingsAverage: "",
-      error: null,
+      releaseDate: "",
+      albumName: "",
+      error: "",
     };
   },
-  mounted() {
-    this.fetchSongs();
-  },
   methods: {
-    async fetchSongs() {
-      try {
-        const response = await fetch("http://localhost/sidhu/public/song");
-        if (!response.ok) throw new Error("Failed to fetch");
-        this.songData = await response.json();
-      } catch (err) {
-        this.error = err.message;
-      }
-    },
-    async getSong(title) {
-      try {
-        // Replace 'title' in the URL with how your API uses it (e.g., as a query parameter)
-        const response = await fetch(
-          `http://localhost/sidhu/public/song/=${title}`
-        );
-        if (!response.ok) throw new Error("Failed to fetch song details");
-        const data = await response.json();
-        this.albumTitle = data.album; // Adjust these based on the actual JSON structure
-        this.ratingsAverage = data.rating; // Adjust these based on the actual JSON structure
-      } catch (err) {
-        this.error = err.message;
-      }
+    getSongDetails(songId) {
+      fetch(`https://openlibrary.org/search.json?=${songId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data) {
+            this.releaseDate = data.release_date
+              ? data.release_date
+              : "Not Available";
+            this.albumName = data.albumName ? data.albumName : "Not Available";
+          } else {
+            this.error = "No details found for the selected song.";
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          this.error = "Failed to fetch song details.";
+        });
     },
   },
 });
 
-app.mount("#app");
+bookStore.mount("#app");
