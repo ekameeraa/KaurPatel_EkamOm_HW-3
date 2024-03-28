@@ -17,17 +17,16 @@
   <body>
     <div class="grid-con" id="app">
       <div class="col-span-full">
-        <h2>My Favourite Singer</h2>
+        <h1>My Favourite Singer</h1>
         <p>Sidhu</p>
         <p>Check Now!</p>
         <ul id="song-list">
           <li v-for="song in songData">
-            <!-- thumbnail to be added by students, v-bind -->
-            <h3>
+            <h2>
               Title:
               <a href="#song" @click="getSong(song.title)"> {{song.title}}</a>
-            </h3>
-            <h4>Duration: {{song.Duration_time}}</h4>
+            </h2>
+            <h3>Duration: {{song.Duration_time}}</h3>
           </li>
         </ul>
       </div>
