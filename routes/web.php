@@ -21,11 +21,12 @@ $router->get('/', function () use ($router) {
 
 <?php
 
+// routes/web.php
+
+$router->get('/api/albums', 'AlbumController@index');
 $router->get('/api/singers', 'SingerController@index');
-$router->get('/api/singers/{id}', 'SingerController@show');
-$router->post('/api/singers', 'SingerController@store');
-$router->put('/api/singers/{id}', 'SingerController@update');
-$router->delete('/api/singers/{id}', 'SingerController@destroy');
+$router->get('/api/songs', 'SongController@index');
+
 
 
 
