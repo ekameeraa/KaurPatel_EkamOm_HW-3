@@ -14,7 +14,7 @@ new Vue({
   },
   methods: {
     fetchSongs() {
-      fetch("http://localhost/sidhu/public/song")
+      fetch("http://localhost/Kaur_Ekam_Api/public/song")
         .then((response) => {
           if (!response.ok) {
             throw new Error("Failed to fetch songs");
@@ -30,7 +30,7 @@ new Vue({
         });
     },
     getSong(title) {
-      fetch(`http://localhost/sidhu/public/song/${title}`)
+      fetch(`http://localhost/Kaur_Ekam_Api/public/song/${title}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Failed to fetch song details");
@@ -49,3 +49,46 @@ new Vue({
     },
   },
 });
+
+import { createApp } from "vue";
+
+const app = createApp({
+  data() {
+    return {
+      songData: [],
+      albumTitle: "",
+      ratingsAverage: "",
+      error: null,
+    };
+  },
+  mounted() {
+    this.fetchSongs();
+  },
+  methods: {
+    async fetchSongs() {
+      try {
+        const response = await fetch("http://localhost/sidhu/public/song");
+        if (!response.ok) throw new Error("Failed to fetch");
+        this.songData = await response.json();
+      } catch (err) {
+        this.error = err.message;
+      }
+    },
+    async getSong(title) {
+      try {
+        // Replace 'title' in the URL with how your API uses it (e.g., as a query parameter)
+        const response = await fetch(
+          `http://localhost/sidhu/public/song/=${title}`
+        );
+        if (!response.ok) throw new Error("Failed to fetch song details");
+        const data = await response.json();
+        this.albumTitle = data.album; // Adjust these based on the actual JSON structure
+        this.ratingsAverage = data.rating; // Adjust these based on the actual JSON structure
+      } catch (err) {
+        this.error = err.message;
+      }
+    },
+  },
+});
+
+app.mount("#app");
