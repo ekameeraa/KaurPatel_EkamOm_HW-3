@@ -1,6 +1,6 @@
 const bookStore = Vue.createApp({
   created() {
-    fetch("http://localhost/Kaur_Ekam_Api/public/songs")
+    fetch("http://localhost/Kaur_Ekam_Api/public/song")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
