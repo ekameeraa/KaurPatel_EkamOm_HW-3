@@ -18,23 +18,39 @@
     <div class="grid-con" id="app">
       <div class="col-span-full">
         <h1>My Favourite Singer</h1>
-        <p>Sidhu</p>
+        <button @click="playGunShot()">Surprise Me</button>
+        <p>SIDHU MOOSEWALA</p>
         <p>Check Now!</p>
         <ul id="song-list">
           <li v-for="song in songData">
             <h2>
               Title:
-              <a href="#song" @click="getSong(song.title)"> {{song.title}}</a>
+              <a href="#song" @click="getSongDetails(song.id)">
+                {{song.title}}</a
+              >
             </h2>
-            <h3>Duration: {{song.Duration_time}}</h3>
+            <h3>ALBUM: {{song.album_name}}</h3>
           </li>
         </ul>
       </div>
-      <div class="col-span-full" id="songInfoCon">
+      <div class="col-span-full" id="songInfoCon" v-if="songDetails">
+        <h1>Song Details</h1>
         <div v-if="error">{{error}}</div>
-        <div v-if="album" id="song">
-          <p>Album: {{albumTitle}}</p>
-          <p>Release_date: {{Release_date}}</p>
+        <div v-if="songDetails" id="song">
+          <img
+            :src="'http://localhost/Kaur_Ekam_Api/public/' + songDetails.image_url"
+            height="300"
+            width="500"
+          />
+          <p>Album: {{songDetails.album_name}}</p>
+          <p>Release_date: {{songDetails.release_date}}</p>
+          <p>SINGER: {{songDetails.singer}}</p>
+          <p>Duration: {{songDetails.duration}}</p>
+          <h1>Singer Details:</h1>
+          <p>Singer Name: {{ songDetails.singer}}</p>
+          <p>Singer Genre: {{ songDetails.genre}}</p>
+          <p>Singer Genre: {{ songDetails.active_years}}</p>
+          <p>Singer Biography: {{ songDetails.biography}}</p>
         </div>
       </div>
     </div>

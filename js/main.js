@@ -1,6 +1,6 @@
 const bookStore = Vue.createApp({
   created() {
-    fetch("http://localhost/Kaur_Ekam_Api/public/songs")
+    fetch("http://localhost/Kaur_Ekam_Api/public/api/songs")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -14,22 +14,25 @@ const bookStore = Vue.createApp({
   data() {
     return {
       songData: [],
-      releaseDate: "",
-      albumName: "",
+      songDetails: null,
       error: "",
     };
   },
   methods: {
+    playGunShot() {
+      var audio = new Audio(
+        "http://localhost/Kaur_Ekam_Api/public/audios/gunfight-shoot-sound.mp3"
+      );
+      audio.play();
+    },
     getSongDetails(songId) {
-      fetch(`https://openlibrary.org/search.json?=${songId}`)
+      console.log(songId);
+      fetch("http://localhost/Kaur_Ekam_Api/public/api/songs/" + songId)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           if (data) {
-            this.releaseDate = data.release_date
-              ? data.release_date
-              : "Not Available";
-            this.albumName = data.albumName ? data.albumName : "Not Available";
+            this.songDetails = data ? data : "Not Available";
           } else {
             this.error = "No details found for the selected song.";
           }
