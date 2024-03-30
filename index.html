@@ -10,7 +10,10 @@
     />
     <link href="css/grid.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
-
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script type="module" src="js/main.js"></script>
   </head>
@@ -40,7 +43,7 @@
           <img
             :src="'http://localhost/Kaur_Ekam_Api/public/' + songDetails.image_url"
             height="300"
-            width="500"
+            width="500" class="animate_animated animate__fadeIn"
           />
           <p>Album: {{songDetails.album_name}}</p>
           <p>Release_date: {{songDetails.release_date}}</p>
