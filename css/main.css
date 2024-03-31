@@ -26,7 +26,7 @@
       padding: 0;
 
       li {
-        background-color:  #fffced;
+        background-color: #fffced;
         padding: 15px;
         margin-bottom: 10px;
         box-shadow: 0 2px 4px #070606;
@@ -76,4 +76,23 @@
       color: #5e008a;
     }
   }
+}
+button {
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 100;
+  background-color: #5e008a;
+  border: 3px solid transparent;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: color 0.3s ease, background-color 0.3s ease,
+    border-radius 0.3s ease;
+}
+button:hover {
+  border-radius: 10px;
+  border-color: #7b0303;
+  color: #5e008a;
+  font-weight: bold;
+  background-color: #dedede;
 }
