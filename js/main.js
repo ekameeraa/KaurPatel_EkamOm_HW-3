@@ -1,6 +1,6 @@
 const bookStore = Vue.createApp({
   created() {
-    fetch("http://localhost/Kaur_Ekam_Api/public/api/songs")
+    fetch("http://localhost/KaurPatel_EkamOm_Api/public/api/songs")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -21,13 +21,13 @@ const bookStore = Vue.createApp({
   methods: {
     playGunShot() {
       var audio = new Audio(
-        "http://localhost/Kaur_Ekam_Api/public/audios/gunfight-shoot-sound.mp3"
+        "http://localhost/KaurPatel_EkamOm_Api/public/audios/gunfight-shoot-sound.mp3"
       );
       audio.play();
     },
     getSongDetails(songId) {
       console.log(songId);
-      fetch("http://localhost/Kaur_Ekam_Api/public/api/songs/" + songId)
+      fetch("http://localhost/KaurPatel_EkamOm_Api/public/api/songs/" + songId)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
